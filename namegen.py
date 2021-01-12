@@ -2,7 +2,6 @@
 generates names for projects
 """
 
-import math
 import argparse
 from random import *
 

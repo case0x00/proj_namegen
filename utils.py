@@ -5,7 +5,6 @@ an existing program name
 """
 
 import sys
-from collections import Counter
 
 from namegen import read, get_programs
 
