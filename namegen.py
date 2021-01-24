@@ -12,6 +12,7 @@ def read(file):
 
 PREFIX = read("dictionary/prefix")
 SUFFIX = read("dictionary/suffix")
+EXISTING_PROGRAMS = ["MAINBEAM","AZUREVIPER","LATENTRUN","HYPERWITCH","PHANTOMCYCLOPS","SOLARNIGHT"]
 
 def get_programs():
     return ["ULTRA", "PHANTOM", "LOTUS", "AZURE", "OLYMPUS", "MAGIC"]
@@ -31,14 +32,16 @@ def main(program, batch):
     if program == "random":
         while (len(codenames) < batch):
             codename = gen_part("prefix") + gen_part("suffix")
-            if is_unique(codename, codenames):
-                codenames.append(codename)
+            if is_unique(codename, EXISTING_PROGRAMS):
+                if is_unique(codename, codenames):
+                    codenames.append(codename)
 
     else:
         while (len(codenames) < batch):
             codename = program + gen_part("suffix")
-            if is_unique(codename,codenames):
-                codenames.append(codename)
+            if is_unique(codename, EXISTING_PROGRAMS):
+                if is_unique(codename,codenames):
+                    codenames.append(codename)
 
     for cd in codenames:
         print(f"{cd}")
