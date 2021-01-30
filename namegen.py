@@ -1,9 +1,17 @@
 """
-generates names for projects
+generates codenames for projects
+
+args:
+    BATCH: batch size (default 1)
+    PROG: program to execute (default random)
+
+author: case 2021-01-30
+@case0x00
+
 """
 
-import argparse
 from random import *
+import sys
 
 def read(file):
     with open(file) as f:
@@ -12,7 +20,7 @@ def read(file):
 
 PREFIX = read("dictionary/prefix")
 SUFFIX = read("dictionary/suffix")
-EXISTING_PROGRAMS = ["MAINBEAM","AZUREVIPER","LATENTRUN","HYPERWITCH","PHANTOMCYCLOPS","SOLARNIGHT"]
+EXISTING_PROJ = ["MAINBEAM","AZUREVIPER","LATENTRUN","HYPERWITCH","PHANTOMCYCLOPS","SOLARNIGHT"]
 
 def get_programs():
     return ["ULTRA", "PHANTOM", "LOTUS", "AZURE", "OLYMPUS", "MAGIC"]
@@ -32,14 +40,14 @@ def main(program, batch):
     if program == "random":
         while (len(codenames) < batch):
             codename = gen_part("prefix") + gen_part("suffix")
-            if is_unique(codename, EXISTING_PROGRAMS):
+            if is_unique(codename, EXISTING_PROJ):
                 if is_unique(codename, codenames):
                     codenames.append(codename)
 
     else:
         while (len(codenames) < batch):
             codename = program + gen_part("suffix")
-            if is_unique(codename, EXISTING_PROGRAMS):
+            if is_unique(codename, EXISTING_PROJ):
                 if is_unique(codename,codenames):
                     codenames.append(codename)
 
@@ -48,24 +56,31 @@ def main(program, batch):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    if len(sys.argv) == 1:
+        # set default args as none are supplied
+        BATCH = 1
+        PROG = "random"
+        print(f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE 1")
+    elif len(sys.argv) < 4:
+        # set either 1 or 2 args
+        BATCH = int(sys.argv[1])
 
-    parser.add_argument("--program","-p", help="program to execute")
-    parser.add_argument("--batch","-b", help="batch size", default=1)
+        if len(sys.argv) == 2:
+            # only batch is set
+            PROG = "random"
+            print(f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE {BATCH}")
 
-    args = parser.parse_args()
-
-    batch = int(args.batch)
-
-    if not args.program:
-        print(f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE {batch}")
-        program = "random"
-    else:
-        if args.program not in get_programs():
-            print("SELECTED PROGRAM DOES NOT EXIST")
-            exit(-1)
         else:
-            program = args.program
-            print(f"SELECTED '{program}' PROGRAM WITH BATCH SIZE {batch}")
+            # batch and prog are set
+            PROG = str(sys.argv[2])
+            if PROG not in get_programs():
+                print(f"SELECTED PROG '{PROG}' IS NOT VALID")
+                exit(-1)
 
-    main(program, batch)
+            print(f"SELECTED '{PROG}' PROGRAM WITH BATCH SIZE {BATCH}")
+        
+    else:
+        print("TOO MANY ARGUMENTS SUPPLIED")
+        exit(-1)
+
+    main(PROG, BATCH)

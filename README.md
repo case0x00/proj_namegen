@@ -4,8 +4,6 @@ generates names for my various projects using a python script. I might build it 
 
 ## usage
 
-set up a virtualenv and install argparse, then
-
 ```bash
 # for generating 3 random codenames
 $ python3 namegen.py.py -b 3
@@ -20,5 +18,4 @@ $ python3 namegen.py.py -p MAGIC -b 10
 ## to do
 
 * figure out how to generate fish related codenames, either just using a list of vetted names or an API
-* add an exclusion list for used names so they aren't used again
 * web interface?

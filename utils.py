@@ -2,6 +2,10 @@
 utilities when modifying the wordlists to check
 whether each name in the file is unique and not
 an existing program name
+
+author: case 2021-01-30
+@case0x00
+
 """
 
 import sys
