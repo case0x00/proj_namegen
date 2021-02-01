@@ -5,17 +5,18 @@ generates names for my various projects using a python script. I might build it 
 ## usage
 
 ```bash
-# for generating 3 random codenames
-$ python3 namegen.py.py -b 3
-# for generating 1 ULTRA-prefixed project names
-$ python3 namegen.py.py -p ULTRA
-# for generating 10 MAGIC-prefixed project names
-$ python3 namegen.py.py -p MAGIC -b 10
+# 1 random codename
+$ ./namegen.py
+# 5 random codenames
+$ ./namegen.py 5
+# 1 ULTRA-prefixed codename
+$ ./namegen.py 1 ULTRA
+# 5 ULTRA-prefixed codenames
+$ ./namegen.py 5 ULTRA
 ```
 
 
 
 ## to do
 
-* figure out how to generate fish related codenames, either just using a list of vetted names or an API
-* web interface?
+* 

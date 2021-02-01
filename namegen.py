@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 generates codenames for projects
 
@@ -23,7 +24,10 @@ SUFFIX = read("dictionary/suffix")
 EXISTING_PROJ = ["MAINBEAM","AZUREVIPER","LATENTRUN","HYPERWITCH","PHANTOMCYCLOPS","SOLARNIGHT"]
 
 def get_programs():
-    return ["ULTRA", "PHANTOM", "LOTUS", "AZURE", "OLYMPUS", "MAGIC"]
+    """
+    reserved program prefixes
+    """
+    return ["ULTRA", "OLYMPUS", "MAGIC"]
 
 def is_unique(item, itemlist):
     return bool(item not in itemlist)
@@ -60,7 +64,8 @@ if __name__ == "__main__":
         # set default args as none are supplied
         BATCH = 1
         PROG = "random"
-        print(f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE 1")
+        x = f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE 1" 
+        print(x)
     elif len(sys.argv) < 4:
         # set either 1 or 2 args
         BATCH = int(sys.argv[1])
@@ -68,7 +73,8 @@ if __name__ == "__main__":
         if len(sys.argv) == 2:
             # only batch is set
             PROG = "random"
-            print(f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE {BATCH}")
+            x = f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE {BATCH}"
+            print(x)
 
         else:
             # batch and prog are set
@@ -77,10 +83,12 @@ if __name__ == "__main__":
                 print(f"SELECTED PROG '{PROG}' IS NOT VALID")
                 exit(-1)
 
-            print(f"SELECTED '{PROG}' PROGRAM WITH BATCH SIZE {BATCH}")
+            x = f"SELECTED {PROG} PROGRAM WITH BATCH SIZE {BATCH}"
+            print(x)
         
     else:
         print("TOO MANY ARGUMENTS SUPPLIED")
         exit(-1)
 
+    print("_"*len(x)+"\n")
     main(PROG, BATCH)
