@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 utilities when modifying the wordlists to check
 whether each name in the file is unique and not
@@ -13,16 +14,14 @@ import sys
 from namegen import read, get_programs
 
 
-FILE = read(f"dictionary/{sys.argv[1]}")
-
-def main():
+def main(file):
     unique = True
-    for i in range(len(FILE)):
-        if FILE.count(FILE[i]) > 1:
-            print(f"'{FILE[i]}' AT LINE {i+1} IS NOT UNIQUE")
+    for i in range(len(file)):
+        if file.count(file[i]) > 1:
+            print(f"'{file[i]}' AT LINE {i+1} IS NOT UNIQUE")
             unique = False
-        if FILE[i] in get_programs():
-            print(f"'{FILE[i]}' AT LINE {i+1} IS A PROGRAM PREFIX")
+        if file[i] in get_programs():
+            print(f"'{file[i]}' AT LINE {i+1} IS A PROGRAM PREFIX")
             unique = False
 
     if unique:
@@ -30,7 +29,9 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 2:
+    if len(sys.argv) > 2 or len(sys.argv) == 1:
         print("INCORRECT NUMBER OF ARGUMENTS")
         exit(-1)
-    main()
+
+    file = read(f"dictionary/{sys.argv[1]}")
+    main(file)

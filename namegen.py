@@ -44,19 +44,17 @@ def main(program, batch):
     if program == "random":
         while (len(codenames) < batch):
             codename = gen_part("prefix") + gen_part("suffix")
-            if is_unique(codename, EXISTING_PROJ):
-                if is_unique(codename, codenames):
-                    codenames.append(codename)
+            if is_unique(codename, EXISTING_PROJ) and is_unique(codename, codenames):
+                codenames.append(codename)
 
     else:
         while (len(codenames) < batch):
             codename = program + gen_part("suffix")
-            if is_unique(codename, EXISTING_PROJ):
-                if is_unique(codename,codenames):
-                    codenames.append(codename)
+            if is_unique(codename, EXISTING_PROJ) and is_unique(codename, codenames):
+                codenames.append(codename)
 
     for cd in codenames:
-        print(f"{cd}")
+        print(cd)
 
 
 if __name__ == "__main__":
