@@ -21,7 +21,7 @@ def read(file):
 
 PREFIX = read("dictionary/prefix")
 SUFFIX = read("dictionary/suffix")
-EXISTING_PROJ = ["MAINBEAM","AZUREVIPER","LATENTRUN","HYPERWITCH","PHANTOMCYCLOPS","SOLARNIGHT"]
+EXISTING_PROJ = read("dictionary/existing_proj")
 
 def get_programs():
     """
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
         else:
             # batch and prog are set
-            PROG = str(sys.argv[2])
+            PROG = str(sys.argv[2]).upper()
             if PROG not in get_programs():
                 print(f"SELECTED PROG '{PROG}' IS NOT VALID")
                 exit(-1)
