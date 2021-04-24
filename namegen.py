@@ -6,22 +6,26 @@ args:
     BATCH: batch size (default 1)
     PROG: program to execute (default random)
 
-author: case 2021-01-30
-@case0x00
+author: case 2021-04-24
+@caserobotics
 
 """
 
 from random import *
 import sys
+import os
 
 def read(file):
     with open(file) as f:
         lines = [line.strip("\n") for line in f]
     return lines
 
-PREFIX = read("dictionary/prefix")
-SUFFIX = read("dictionary/suffix")
-EXISTING_PROJ = read("dictionary/existing_proj")
+current_dir = os.path.dirname(os.path.realpath(__file__))
+
+
+PREFIX = read(f"{current_dir}/dictionary/prefix")
+SUFFIX = read(f"{current_dir}/dictionary/suffix")
+EXISTING_PROJ = read(f"{current_dir}/dictionary/existing_proj")
 
 def get_programs():
     """
