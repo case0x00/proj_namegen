@@ -15,17 +15,17 @@ from random import *
 import sys
 import os
 
+CURRENTDIR = os.path.dirname(os.path.realpath(__file__))
+
 def read(file):
-    with open(file) as f:
+    with open(f"{CURRENTDIR}/{file}") as f:
         lines = [line.strip("\n") for line in f]
     return lines
 
-current_dir = os.path.dirname(os.path.realpath(__file__))
 
-
-PREFIX = read(f"{current_dir}/dictionary/prefix")
-SUFFIX = read(f"{current_dir}/dictionary/suffix")
-EXISTING_PROJ = read(f"{current_dir}/dictionary/existing_proj")
+PREFIX = read("dictionary/prefix")
+SUFFIX = read("dictionary/suffix")
+EXISTING_PROJ = read("dictionary/existing_proj")
 
 def get_programs():
     """
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         # set default args as none are supplied
         BATCH = 1
         PROG = "random"
-        x = f"SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE 1" 
+        x = "SELECTED 'RANDOM NAME' PROGRAM WITH BATCH SIZE 1" 
         print(x)
     elif len(sys.argv) < 4:
         # set either 1 or 2 args
